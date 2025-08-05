@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head><title>Image Search</title></head>
+<body>
+  <h2>Upload Image to Search</h2>
+  <form method="POST" action="/search" enctype="multipart/form-data">
+    <input type="file" name="image" required><br>
+    <label>Method:</label>
+    <select name="method">
+      <option value="clip">CLIP</option>
+      <option value="autoencoder">Autoencoder</option>
+    </select><br><br>
+    <button type="submit">Search</button>
+  </form>
+</body>
+</html>
+

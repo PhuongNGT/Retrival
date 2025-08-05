@@ -1,0 +1,13 @@
+*.pt
+*.npy
+*.pkl
+dataset/
+clip_outputs/
+__pycache__/
+*.pt
+*.npy
+*.pkl
+*.jpg
+dataset/
+clip_outputs/
+__pycache__/
