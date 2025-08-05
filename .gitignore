@@ -1,1 +1,1 @@
-*.pt\n*.npy\n*.pkl\n*.jpg\n*.zip\ndataset/\nclip_outputs/\n__pycache__/\n*.pyc
+dataset/
