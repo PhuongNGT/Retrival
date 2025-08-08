@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Báo cáo So sánh CLIP vs Autoencoder</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background-color: #f9fafb;
+      color: #2c3e50;
+      line-height: 1.6;
+    }
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 20px;
+    }
+    h2 {
+      margin-top: 40px;
+      color: #34495e;
+    }
+    table {
+      width: 60%;
+      border-collapse: collapse;
+      margin: 20px auto;
+      background: white;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+    th, td {
+      padding: 10px 14px;
+      text-align: center;
+    }
+    th {
+      background-color: #ecf0f1;
+      font-weight: bold;
+    }
+    tr:nth-child(even) {
+      background-color: #f8f9fa;
+    }
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+    img {
+      display: block;
+      margin: 20px auto;
+      max-width: 700px;
+      width: 100%;
+      height: auto;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    p {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 1.1em;
+    }
+    strong {
+      color: #2980b9;
+    }
+    nav {
+    margin-bottom: 20px;
+  }
+  nav a {
+    display: inline-block;
+    margin-right: 15px;
+    padding: 6px 14px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    background-color: #2980b9;
+    border-radius: 20px; /* Góc tròn */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15); /* Shadow */
+    transition: all 0.2s ease-in-out;
+  }
+  nav a:hover {
+    background-color: #1f6391;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+  }
+  </style>
+</head>
+<body>
+ <nav>
+  <a href="{{ url_for('index') }}">Trang chủ</a>
+  <a href="{{ url_for('report') }}">Báo cáo</a>
+  <a href="{{ url_for('dashboard') }}">Cụm ảnh</a>
+</nav> 
+  <h1>Báo cáo So sánh CLIP vs Autoencoder</h1>
+
+  <h2>Precision@5 Trung bình</h2>
+  <table>
+    <tr>
+      <th>Phương pháp</th>
+      <th>Precision@5</th>
+    </tr>
+    <tr>
+      <td>Autoencoder</td>
+      <td>0.2800</td>
+    </tr>
+    <tr>
+      <td>CLIP</td>
+      <td>0.6327</td>
+    </tr>
+  </table>
+
+  <h2>Biểu đồ</h2>
+  
+  <img src="{{ url_for('static', filename='precision_comparison.png') }}" alt="Cluster Bar Chart">
+  <p>File kết quả chi tiết: <strong>evaluation_results.csv</strong></p>
+
+</body>
+</html>
+
