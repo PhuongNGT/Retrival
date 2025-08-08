@@ -21,6 +21,11 @@
       gap: 15px;
       margin-top: 20px;
     }
+    .image-card {
+      position: relative;
+      display: inline-block;
+      border-radius: 10px;
+    }
     .image-container img {
       border: 1px solid #ccc;
       border-radius: 8px;
@@ -31,6 +36,21 @@
     }
     .image-container img:hover {
       transform: scale(1.05);
+    }
+    /* highlight cụm được focus */
+    .highlight {
+      outline: 3px solid #2980b9;
+      box-shadow: 0 0 0 4px rgba(41, 128, 185, 0.2);
+    }
+    .badge {
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      background: #2980b9;
+      color: #fff;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 12px;
     }
     nav {
       margin-bottom: 20px;
@@ -61,7 +81,6 @@
       padding: 5px;
       max-width: 100%;
     }
-    
   </style>
 </head>
 <body>
@@ -74,16 +93,23 @@
 
   <h2>Representative Images per Cluster</h2>
   <div class="image-container">
-    {% for cluster_img in clusters %}
-      <img src="{{ url_for('static', filename='cluster_reps/' + cluster_img) }}" width="200">
+    {% for src in rep_images %}
+      <div class="image-card">
+        <span class="badge">#{{ loop.index0 }}</span>
+        <img
+          src="{{ src }}"
+          width="200"
+          class="{% if focus is not none and loop.index0 == focus %}highlight{% endif %}"
+          alt="Cluster {{ loop.index0 }}"
+        >
+      </div>
     {% endfor %}
   </div>
 
   <div class="chart-container">
     <h2>Biểu đồ số lượng ảnh mỗi cụm</h2>
-    <img src="{{ url_for('static', filename='cluster_bar.png') }}" alt="Cluster Bar Chart">
+    <img src="{{ bar_img }}" alt="Cluster Bar Chart">
   </div>
 
 </body>
 </html>
-
