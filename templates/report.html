@@ -1,119 +1,122 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
   <meta charset="UTF-8">
   <title>Báo cáo So sánh CLIP vs Autoencoder</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 40px;
-      background-color: #f9fafb;
-      color: #2c3e50;
-      line-height: 1.6;
-    }
-    h1 {
-      text-align: center;
-      color: #2c3e50;
-      margin-bottom: 20px;
-    }
-    h2 {
-      margin-top: 40px;
-      color: #34495e;
-    }
-    table {
-      width: 60%;
-      border-collapse: collapse;
-      margin: 20px auto;
-      background: white;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-      border-radius: 6px;
-      overflow: hidden;
-    }
-    table, th, td {
-      border: 1px solid #ddd;
-    }
-    th, td {
-      padding: 10px 14px;
-      text-align: center;
-    }
-    th {
-      background-color: #ecf0f1;
-      font-weight: bold;
-    }
-    tr:nth-child(even) {
-      background-color: #f8f9fa;
-    }
-    tr:hover {
-      background-color: #f1f1f1;
-    }
-    img {
-      display: block;
-      margin: 20px auto;
-      max-width: 700px;
-      width: 100%;
-      height: auto;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    }
-    p {
-      text-align: center;
-      margin-top: 40px;
-      font-size: 1.1em;
-    }
-    strong {
-      color: #2980b9;
-    }
-    nav {
-    margin-bottom: 20px;
-  }
-  nav a {
-    display: inline-block;
-    margin-right: 15px;
-    padding: 6px 14px;
-    text-decoration: none;
-    color: #fff;
-    font-weight: bold;
-    background-color: #2980b9;
-    border-radius: 20px; /* Góc tròn */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15); /* Shadow */
-    transition: all 0.2s ease-in-out;
-  }
-  nav a:hover {
-    background-color: #1f6391;
-    box-shadow: 0 6px 12px rgba(0,0,0,0.25);
-  }
+    body { font-family: Arial, sans-serif; margin: 40px; color: #2c3e50; line-height: 1.6; }
+    h1 { margin-top: 0; }
+    table { border-collapse: collapse; margin: 12px 0 24px 0; min-width: 300px; }
+    table, th, td { border: 1px solid #bbb; }
+    th, td { padding: 8px 12px; text-align: center; }
+    th { background-color: #ecf0f1; }
+    img { max-width: 680px; height: auto; border: 1px solid #ccc; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+    .nav a { display: inline-block; margin-right: 12px; padding: 6px 12px; text-decoration: none; color: #fff; font-weight: bold; background-color: #2980b9; border-radius: 16px; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
   </style>
 </head>
 <body>
- <nav>
-  <a href="{{ url_for('index') }}">Trang chủ</a>
-  <a href="{{ url_for('report') }}">Báo cáo</a>
-  <a href="{{ url_for('dashboard') }}">Cụm ảnh</a>
-</nav> 
-  <h1>Báo cáo So sánh CLIP vs Autoencoder</h1>
+  <div class="nav">
+    <a href="/">Trang chủ</a>
+    <a href="/dashboard">Cụm ảnh</a>
+  </div>
 
-  <h2>Precision@5 Trung bình</h2>
+  <h1>📊 Báo cáo So sánh CLIP vs Autoencoder</h1>
+
+  <h2>🎯 Precision@5 trung bình</h2>
   <table>
-    <tr>
-      <th>Phương pháp</th>
-      <th>Precision@5</th>
-    </tr>
-    <tr>
-      <td>Autoencoder</td>
-      <td>0.2800</td>
-    </tr>
-    <tr>
-      <td>CLIP</td>
-      <td>0.6327</td>
-    </tr>
+    <tr><th>Phương pháp</th><th>Precision@5</th></tr>
+    <tr><td>Autoencoder</td><td>0.3455</td></tr>
+    <tr><td>CLIP</td><td>0.8145</td></tr>
   </table>
 
-  <h2>Biểu đồ</h2>
-  
-  <img src="{{ url_for('static', filename='precision_comparison.png') }}" alt="Cluster Bar Chart">
-  <p>File kết quả chi tiết: <strong>evaluation_results.csv</strong></p>
-
+  <div class="grid">
+    <div>
+      <h2>📈 Biểu đồ</h2>
+      <img src="/static/precision_comparison.png?v=1754654901" alt="Precision Comparison">
+    </div>
+    <div>
+      <h2>📂 Tệp kết quả</h2>
+      <p><a href="/static/evaluation_results.csv?v=1754653124" download>evaluation_results.csv</a></p>
+      <h3>Tóm tắt</h3><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>mAP_AE</th>
+      <th>mAP_CLIP</th>
+      <th>MRR_AE</th>
+      <th>MRR_CLIP</th>
+      <th>AE_P@1_mean</th>
+      <th>CLIP_P@1_mean</th>
+      <th>AE_R@1_mean</th>
+      <th>CLIP_R@1_mean</th>
+      <th>AE_F1@1_mean</th>
+      <th>CLIP_F1@1_mean</th>
+      <th>AE_Hit@1_mean</th>
+      <th>CLIP_Hit@1_mean</th>
+      <th>AE_nDCG@1_mean</th>
+      <th>CLIP_nDCG@1_mean</th>
+      <th>AE_P@5_mean</th>
+      <th>CLIP_P@5_mean</th>
+      <th>AE_R@5_mean</th>
+      <th>CLIP_R@5_mean</th>
+      <th>AE_F1@5_mean</th>
+      <th>CLIP_F1@5_mean</th>
+      <th>AE_Hit@5_mean</th>
+      <th>CLIP_Hit@5_mean</th>
+      <th>AE_nDCG@5_mean</th>
+      <th>CLIP_nDCG@5_mean</th>
+      <th>AE_P@10_mean</th>
+      <th>CLIP_P@10_mean</th>
+      <th>AE_R@10_mean</th>
+      <th>CLIP_R@10_mean</th>
+      <th>AE_F1@10_mean</th>
+      <th>CLIP_F1@10_mean</th>
+      <th>AE_Hit@10_mean</th>
+      <th>CLIP_Hit@10_mean</th>
+      <th>AE_nDCG@10_mean</th>
+      <th>CLIP_nDCG@10_mean</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0.2615</td>
+      <td>0.5998</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0593</td>
+      <td>0.0593</td>
+      <td>0.1072</td>
+      <td>0.1072</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.3455</td>
+      <td>0.8145</td>
+      <td>0.0757</td>
+      <td>0.2113</td>
+      <td>0.1048</td>
+      <td>0.289</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.5176</td>
+      <td>0.8596</td>
+      <td>0.2218</td>
+      <td>0.6818</td>
+      <td>0.0825</td>
+      <td>0.3086</td>
+      <td>0.0944</td>
+      <td>0.344</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.4499</td>
+      <td>0.7875</td>
+    </tr>
+  </tbody>
+</table>
+    </div>
+  </div>
 </body>
 </html>
-
