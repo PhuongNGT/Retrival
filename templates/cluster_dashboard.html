@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cluster Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9fafb;
+      margin: 40px;
+      color: #2c3e50;
+      line-height: 1.6;
+    }
+    h2 {
+      color: #34495e;
+      margin-top: 20px;
+    }
+    .image-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    .image-container img {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      background-color: white;
+      padding: 5px;
+      transition: transform 0.2s ease;
+    }
+    .image-container img:hover {
+      transform: scale(1.05);
+    }
+    nav {
+      margin-bottom: 20px;
+    }
+    nav a {
+      display: inline-block;
+      margin-right: 15px;
+      text-decoration: none;
+      color: #2980b9;
+      font-weight: bold;
+      padding: 6px 12px;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    nav a:hover {
+      background-color: #ecf0f1;
+    }
+    .chart-container {
+      margin-top: 30px;
+      text-align: center;
+    }
+    .chart-container img {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      background-color: white;
+      padding: 5px;
+      max-width: 100%;
+    }
+    
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="{{ url_for('index') }}">Trang chủ</a>
+    <a href="{{ url_for('report') }}">Báo cáo</a>
+    <a href="{{ url_for('dashboard') }}">Cụm ảnh</a>
+  </nav>
+
+  <h2>Representative Images per Cluster</h2>
+  <div class="image-container">
+    {% for cluster_img in clusters %}
+      <img src="{{ url_for('static', filename='cluster_reps/' + cluster_img) }}" width="200">
+    {% endfor %}
+  </div>
+
+  <div class="chart-container">
+    <h2>Biểu đồ số lượng ảnh mỗi cụm</h2>
+    <img src="{{ url_for('static', filename='cluster_bar.png') }}" alt="Cluster Bar Chart">
+  </div>
+
+</body>
+</html>
+
