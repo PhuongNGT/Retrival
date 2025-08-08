@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Kết quả tìm kiếm ảnh</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9fafb;
+      margin: 40px;
+      color: #2c3e50;
+      line-height: 1.6;
+    }
+    h2 {
+      color: #34495e;
+      margin-top: 20px;
+    }
+    .image-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    .image-container img {
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      background-color: white;
+      padding: 5px;
+    }
+  nav {
+    margin-bottom: 20px;
+  }
+  nav a {
+    display: inline-block;
+    margin-right: 15px;
+    padding: 6px 14px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    background-color: #2980b9;
+    border-radius: 20px; /* Góc tròn */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15); /* Shadow */
+    transition: all 0.2s ease-in-out;
+  }
+  nav a:hover {
+    background-color: #1f6391;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+  }
+  </style>
+</head>
+<body>
+
+ <nav>
+  <a href="{{ url_for('index') }}">Trang chủ</a>
+  <a href="{{ url_for('report') }}">Báo cáo</a>
+  <a href="{{ url_for('dashboard') }}">Cụm ảnh</a>
+</nav>  
+
+  <h2>Ảnh truy vấn</h2>
+  <div class="image-container">
+    <img src="{{ url_for('static', filename='uploads/' + query_image) }}" width="300">
+  </div>
+
+  <h2>Kết quả tìm kiếm</h2>
+  <div class="image-container">
+    {% for img in result_images %}
+      <img src="{{ url_for('static', filename='results/' + img) }}" width="200">
+    {% endfor %}
+  </div>
+
+</body>
+</html>
+
