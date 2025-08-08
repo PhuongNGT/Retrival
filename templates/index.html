@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Image Search</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f8fa;
+      color: #333;
+      text-align: center;
+      padding: 50px;
+    }
+    h2 {
+      color: #2c3e50;
+    }
+    form {
+      background: #fff;
+      padding: 20px 30px;
+      border-radius: 10px;
+      display: inline-block;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      margin-top: 20px;
+    }
+    input[type="file"] {
+      margin: 10px 0;
+    }
+    label {
+      font-weight: bold;
+    }
+    select {
+      padding: 5px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: #3498db;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #2980b9;
+    }
+  </style>
+</head>
+<body>
+  <h2>Upload Image to Search</h2>
+  <form method="POST" action="/search" enctype="multipart/form-data">
+    <input type="file" name="image" required><br>
+    <label>Method:</label>
+    <select name="method">
+      <option value="clip">CLIP</option>
+      <option value="autoencoder">Autoencoder</option>
+    </select><br><br>
+    <button type="submit">Search</button>
+  </form>
+</body>
+</html>
+
