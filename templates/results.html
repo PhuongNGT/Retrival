@@ -59,7 +59,7 @@
 
   <h2>Ảnh truy vấn</h2>
   <div class="image-container">
-    <img src="{{ url_for('static', filename='uploads/' + query_image) }}" width="300">
+    <img src="{{ url_for('static', filename=query_image) }}" width="300">
   </div>
 
   <h2>Kết quả tìm kiếm</h2>
@@ -68,7 +68,9 @@
       <img src="{{ url_for('static', filename='results/' + img) }}" width="200">
     {% endfor %}
   </div>
-
+<div class="chart-container">
+  <h2>Biểu đồ số lượng ảnh mỗi cụm</h2>
+  <img src="{{ url_for('static', filename='cluster_bar.png', v=bar_version) }}" alt="Cluster Bar Chart">
+</div>
 </body>
 </html>
-
