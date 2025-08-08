@@ -164,7 +164,11 @@ def dashboard():
 
 @app.route('/report')
 def report():
-    return render_template('report.html')
+    plot_path = os.path.join('static', 'precision_comparison.png')
+    csv_path  = os.path.join('static', 'evaluation_results.csv')
+    plot_mtime = int(os.path.getmtime(plot_path)) if os.path.exists(plot_path) else 0
+    csv_mtime  = int(os.path.getmtime(csv_path))  if os.path.exists(csv_path)  else 0
+    return render_template('report.html', plot_mtime=plot_mtime, csv_mtime=csv_mtime)
 
 # -----------------------------------------------------------------------------
 if __name__ == '__main__':
